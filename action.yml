@@ -1,4 +1,4 @@
-name: 'dotenv'
+name: 'Dotenv Action'
 description: 'Load variables from .env file'
 inputs:
   path:  # id of input
