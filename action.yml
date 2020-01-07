@@ -1,5 +1,6 @@
 name: 'Dotenv Action'
 description: 'Load variables from .env file'
+icon: chevron-right
 inputs:
   path:  # id of input
     description: 'the path to the .env file (including file name)'
