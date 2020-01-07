@@ -1,13 +1,13 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'dotenv'
+description: 'Load variables from .env file'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  path:  # id of input
+    description: 'the path to the .env file (including file name)'
     required: true
-    default: '1000'
+    default: '.env'
 outputs:
-  time: # output will be available to future steps 
-    description: 'The message to output'
+  generic: # output will be available to future steps 
+    description: 'This command will have generic output variables based on .env'
 runs:
   using: 'node12'
   main: 'dist/index.js'

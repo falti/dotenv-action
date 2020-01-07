@@ -1,22 +1,17 @@
 const core = require('@actions/core');
-const wait = require('./wait');
+const dotenvAction = require('./dotenv_action');
+try {
+  const dotenvFile = core.getInput("path");
+  const variables = dotenvAction(dotenvFile);
+  console.log(variables);
 
-
-// most @actions toolkit packages have async methods
-async function run() {
-  try { 
-    const ms = core.getInput('milliseconds');
-    console.log(`Waiting ${ms} milliseconds ...`)
-
-    core.debug((new Date()).toTimeString())
-    wait(parseInt(ms));
-    core.debug((new Date()).toTimeString())
-
-    core.setOutput('time', new Date().toTimeString());
-  } 
-  catch (error) {
-    core.setFailed(error.message);
+  core.setOutput("generic", "please check for actual outputs");
+  
+  for (const key in variables) {
+    const value = variables[key];
+    core.setOutput(key, value);
   }
+  
+} catch (error) {
+  core.setFailed(error.message);
 }
-
-run()
