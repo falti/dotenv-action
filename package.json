@@ -24,12 +24,12 @@
   },
   "homepage": "https://github.com/falti/dotenv-action#readme",
   "dependencies": {
-    "@actions/core": "^1.1.1",
+    "@actions/core": "^1.2.3",
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.20.5",
-    "eslint": "^6.3.0",
-    "jest": "^24.9.0"
+    "@zeit/ncc": "^0.22",
+    "eslint": "^6.8",
+    "jest": "^25.2.4"
   }
 }
