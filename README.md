@@ -9,7 +9,9 @@ It reads the `.env` file from the root of this repo and provides environment var
 
 ## Inputs
 
-none
+### `path`
+
+Override the path to the `.env` file. Default is `.env` in the repository root.
 
 ## Outputs
 
