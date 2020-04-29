@@ -2,8 +2,14 @@ const core = require('@actions/core');
 const dotenvAction = require('./dotenv_action');
 try {
   const dotenvFile = core.getInput("path");
-  const variables = dotenvAction(dotenvFile);
-  console.log(variables);
+  const logVariables = core.getInput("log-variables").toLowerCase() === "true";
+  const variables = dotenvAction(dotenvFile, logVariables);
+
+  if (logVariables) {
+    console.log(variables);
+  } else {
+    console.log(`loaded ${Object.keys(variables).length} values into the environment`);
+  }
 
   core.setOutput("generic", "please check for actual outputs");
   
