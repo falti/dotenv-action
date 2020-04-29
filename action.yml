@@ -8,6 +8,10 @@ inputs:
     description: 'the path to the .env file (including file name)'
     required: true
     default: '.env'
+  log-variables:
+    description: 'whether to log the variables to output or not'
+    required: false
+    default: 'false'
 outputs:
   generic: # output will be available to future steps 
     description: 'This command will have generic output variables based on .env'
