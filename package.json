@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/falti/dotenv-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.3",
+    "@actions/core": "^1.2.6",
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
