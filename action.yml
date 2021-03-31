@@ -12,6 +12,10 @@ inputs:
     description: 'whether to log the variables to output or not'
     required: false
     default: 'false'
+  mask-variables:
+    description: 'whether to mask the variables as secrets or not'
+    required: false
+    default: 'false'
 outputs:
   generic: # output will be available to future steps 
     description: 'This command will have generic output variables based on .env'
