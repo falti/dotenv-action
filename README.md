@@ -13,6 +13,14 @@ It reads the `.env` file from the root of this repo and provides environment var
 
 Override the path to the `.env` file. Default is `.env` in the repository root.
 
+### `log-variables`
+
+Log variables after reading from the `.env` file.
+
+### `mask-variables`
+
+Mask values after reading from the `.env` file.
+
 ## Outputs
 
 ### `generic`
