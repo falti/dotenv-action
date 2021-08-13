@@ -1,11 +1,10 @@
-
-<p align="center">
-  <a href="https://github.com/falti/dotenv-action/actions"><img alt="javscript-action status" src="https://github.com/falti/dotenv-action/workflows/units-test/badge.svg"></a>
-</p>
-
 # dotenv action
 
 It reads the `.env` file from the root of this repo and provides environment variables to build steps.
+
+## Build history
+
+[![Build history](https://buildstats.info/github/chart/falti/dotenv-action?branch=master)](https://github.com/falti/dotenv-action/actions)
 
 ## Inputs
 
