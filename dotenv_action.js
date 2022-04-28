@@ -7,11 +7,12 @@ let dotenv_action = function (dotenvFile) {
     }
 
     const dotenv = require('dotenv').config({ path: dotenvFile });
+    const dotenv_expand = require('dotenv-expand').expand(dotenv);
     console.log("loading .env file from " + dotenvFile);
     
     const returnedMap = {};
-    for (const key in dotenv.parsed) {
-        const value = dotenv.parsed[key];
+    for (const key in dotenv_expand.parsed) {
+        const value = dotenv_expand.parsed[key];
         const lowercase_key = key.toLocaleLowerCase()
         returnedMap[lowercase_key] = value;
     }
