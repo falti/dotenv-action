@@ -25,7 +25,8 @@
   "homepage": "https://github.com/falti/dotenv-action#readme",
   "dependencies": {
     "@actions/core": "^1.9.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^8.0.3"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.22.1",
