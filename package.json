@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js",
-    "package": "ncc build -m index.js --minify --v8-cache",
+    "package": "ncc build index.js --minify --v8-cache",
     "test": "eslint index.js && jest"
   },
   "repository": {
