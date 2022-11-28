@@ -11,15 +11,15 @@ jobs:
   units:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - run: npm ci
     - run: npm test
 
-  # test action works running from the graph  
+  # test action works running from the graph
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - uses: ./
       with:
         path: ./fixtures/.env
