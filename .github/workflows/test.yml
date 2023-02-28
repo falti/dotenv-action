@@ -23,3 +23,17 @@ jobs:
     - uses: ./
       with:
         path: ./fixtures/.env
+
+  test-export:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./
+      with:
+        path: ./fixtures/.env
+        export-variables: true
+    - run: |
+        if [ "$fixtures_1" != "123" ]; then
+          echo "Variables not exported"
+          exit 1
+        fi
