@@ -20,6 +20,10 @@ inputs:
     description: 'whether to export the variables to the environment or not'
     required: false
     default: 'false'
+  keys-case:
+    description: 'Transform keys case to lower, upper or keep as it is with bypass'
+    required: false
+    default: 'lower'
 outputs:
   generic: # output will be available to future steps 
     description: 'This command will have generic output variables based on .env'
