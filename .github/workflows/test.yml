@@ -37,3 +37,59 @@ jobs:
           echo "Variables not exported"
           exit 1
         fi
+
+  test-keys-lowercase:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./
+      with:
+        path: ./fixtures/.case.env
+        log-variables: true
+        export-variables: true
+    - run: |
+        if [ -z "$fixtures_6" ]; then
+          echo "Variable not set"
+          exit 1
+        fi
+        echo "lower: $fixtures_6"
+        echo "upper: $FIXTURES_6"
+        echo "bypass: $Fixtures_6"
+
+  test-keys-uppercase:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./
+      with:
+        path: ./fixtures/.case.env
+        log-variables: true
+        export-variables: true
+        keys-case: upper
+    - run: |
+        if [ -z "$FIXTURES_6" ]; then
+          echo "Variable not set"
+          exit 1
+        fi
+        echo "lower: $fixtures_6"
+        echo "upper: $FIXTURES_6"
+        echo "bypass: $Fixtures_6"
+
+  test-keys-bypasscase:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./
+      with:
+        path: ./fixtures/.case.env
+        log-variables: true
+        export-variables: true
+        keys-case: bypass
+    - run: |
+        if [ -z "$Fixtures_6" ]; then
+          echo "Variable not set"
+          exit 1
+        fi
+        echo "lower: $fixtures_6"
+        echo "upper: $FIXTURES_6"
+        echo "bypass: $Fixtures_6"

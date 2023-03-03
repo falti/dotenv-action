@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-let dotenv_action = function (dotenvFile) {
+let dotenv_action = function (dotenvFile, keysCase) {
     
     if (!fs.existsSync(dotenvFile)){
         throw new Error('file does not exist');
@@ -13,8 +13,16 @@ let dotenv_action = function (dotenvFile) {
     const returnedMap = {};
     for (const key in dotenv_expand.parsed) {
         const value = dotenv_expand.parsed[key];
-        const lowercase_key = key.toLocaleLowerCase()
-        returnedMap[lowercase_key] = value;
+
+        if (keysCase == 'bypass') {
+            returnedMap[key] = value;
+        }
+        else if (keysCase == 'upper') {
+            returnedMap[key.toLocaleUpperCase()] = value;
+        }
+        else {
+            returnedMap[key.toLocaleLowerCase()] = value;
+        }
     }
     return returnedMap;
 }

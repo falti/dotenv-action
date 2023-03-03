@@ -24,6 +24,10 @@ Mask values after reading from the `.env` file.
 
 Export values as environment variables in addition to storing them in the output after reading from the `.env` file.
 
+### `keys-case`
+
+Transform keys cases to `lower`, `upper` or keep as it is with `bypass`.
+
 ## Outputs
 
 ### `generic`

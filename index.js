@@ -7,7 +7,9 @@ try {
     core.getInput('mask-variables').toLowerCase() === 'true';
   const exportVariables =
       core.getInput('export-variables').toLowerCase() === 'true';
-  const variables = dotenvAction(dotenvFile, logVariables);
+  const keysCase =
+      core.getInput('keys-case', { required: false }).toLowerCase();
+  const variables = dotenvAction(dotenvFile, keysCase, logVariables);
 
   if (maskVariables) {
     for (const key in variables) {
