@@ -4,92 +4,98 @@ on:
   push:
     branches:
       - master
-      - 'releases/*'
+      - "releases/*"
 
 jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npx prettier --check .
+
   # unit tests
   units:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - run: npm ci
-    - run: npm test
+      - uses: actions/checkout@v3
+      - run: npm ci
+      - run: npm test
 
   # test action works running from the graph
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: ./
-      with:
-        path: ./fixtures/.env
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          path: ./fixtures/.env
 
   test-export:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: ./
-      with:
-        path: ./fixtures/.env
-        export-variables: true
-    - run: |
-        if [ "$fixtures_1" != "123" ]; then
-          echo "Variables not exported"
-          exit 1
-        fi
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          path: ./fixtures/.env
+          export-variables: true
+      - run: |
+          if [ "$fixtures_1" != "123" ]; then
+            echo "Variables not exported"
+            exit 1
+          fi
 
   test-keys-lowercase:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: ./
-      with:
-        path: ./fixtures/.case.env
-        log-variables: true
-        export-variables: true
-    - run: |
-        if [ -z "$fixtures_6" ]; then
-          echo "Variable not set"
-          exit 1
-        fi
-        echo "lower: $fixtures_6"
-        echo "upper: $FIXTURES_6"
-        echo "bypass: $Fixtures_6"
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          path: ./fixtures/.case.env
+          log-variables: true
+          export-variables: true
+      - run: |
+          if [ -z "$fixtures_6" ]; then
+            echo "Variable not set"
+            exit 1
+          fi
+          echo "lower: $fixtures_6"
+          echo "upper: $FIXTURES_6"
+          echo "bypass: $Fixtures_6"
 
   test-keys-uppercase:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: ./
-      with:
-        path: ./fixtures/.case.env
-        log-variables: true
-        export-variables: true
-        keys-case: upper
-    - run: |
-        if [ -z "$FIXTURES_6" ]; then
-          echo "Variable not set"
-          exit 1
-        fi
-        echo "lower: $fixtures_6"
-        echo "upper: $FIXTURES_6"
-        echo "bypass: $Fixtures_6"
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          path: ./fixtures/.case.env
+          log-variables: true
+          export-variables: true
+          keys-case: upper
+      - run: |
+          if [ -z "$FIXTURES_6" ]; then
+            echo "Variable not set"
+            exit 1
+          fi
+          echo "lower: $fixtures_6"
+          echo "upper: $FIXTURES_6"
+          echo "bypass: $Fixtures_6"
 
   test-keys-bypasscase:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: ./
-      with:
-        path: ./fixtures/.case.env
-        log-variables: true
-        export-variables: true
-        keys-case: bypass
-    - run: |
-        if [ -z "$Fixtures_6" ]; then
-          echo "Variable not set"
-          exit 1
-        fi
-        echo "lower: $fixtures_6"
-        echo "upper: $FIXTURES_6"
-        echo "bypass: $Fixtures_6"
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          path: ./fixtures/.case.env
+          log-variables: true
+          export-variables: true
+          keys-case: bypass
+      - run: |
+          if [ -z "$Fixtures_6" ]; then
+            echo "Variable not set"
+            exit 1
+          fi
+          echo "lower: $fixtures_6"
+          echo "upper: $FIXTURES_6"
+          echo "bypass: $Fixtures_6"

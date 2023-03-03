@@ -48,7 +48,6 @@ Then you will have outputs:
 
 ## Example usage
 
-
     id: dotenv
     uses: ./.github/actions/dotenv-action
 
