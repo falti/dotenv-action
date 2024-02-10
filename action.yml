@@ -28,5 +28,5 @@ outputs:
   generic: # output will be available to future steps
     description: "This command will have generic output variables based on .env"
 runs:
-  using: "node16"
+  using: "node20"
   main: "dist/index.js"
