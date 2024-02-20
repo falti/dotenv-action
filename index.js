@@ -23,7 +23,7 @@ try {
     console.log(variables);
   } else {
     console.log(
-      `loaded ${Object.keys(variables).length} values into the environment`
+      `loaded ${Object.keys(variables).length} values into the environment`,
     );
   }
 
