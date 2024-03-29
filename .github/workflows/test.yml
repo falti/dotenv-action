@@ -44,6 +44,21 @@ jobs:
             exit 1
           fi
 
+  test-export-prefix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          path: ./fixtures/.env
+          export-variables: true
+          export-variables-prefix: "TEST_"
+      - run: |
+          if [ "$TEST_fixtures_1" != "123" ]; then
+            echo "Variables not exported"
+            exit 1
+          fi
+
   test-keys-lowercase:
     runs-on: ubuntu-latest
     steps:
