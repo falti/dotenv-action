@@ -44,6 +44,7 @@ jobs:
             exit 1
           fi
 
+  # test environment variables are prefixed
   test-export-prefix:
     runs-on: ubuntu-latest
     steps:
@@ -52,7 +53,7 @@ jobs:
         with:
           path: ./fixtures/.env
           export-variables: true
-          export-variables-prefix: "TEST_"
+          export-variables-prefix: "TFVARS_"
       - run: |
           if [ "$TEST_fixtures_1" != "123" ]; then
             echo "Variables not exported"
