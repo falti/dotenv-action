@@ -7,6 +7,7 @@ try {
     core.getInput("mask-variables").toLowerCase() === "true";
   const exportVariables =
     core.getInput("export-variables").toLowerCase() === "true";
+  const exportVariablesPrefix = core.getInput("export-variables-prefix");
   const keysCase = core
     .getInput("keys-case", { required: false })
     .toLowerCase();
@@ -34,7 +35,7 @@ try {
     core.setOutput(key, value);
 
     if (exportVariables) {
-      core.exportVariable(key, value);
+      core.exportVariable(exportVariablesPrefix + key, value);
     }
   }
 } catch (error) {

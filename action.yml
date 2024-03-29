@@ -20,6 +20,10 @@ inputs:
     description: "whether to export the variables to the environment or not"
     required: false
     default: "false"
+  export-variables-prefix:
+    description: "prefix to add to the exported variables"
+    required: false
+    default: ""
   keys-case:
     description: "Transform keys case to lower, upper or keep as it is with bypass"
     required: false
