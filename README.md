@@ -26,7 +26,7 @@ Export values as environment variables in addition to storing them in the output
 
 ### `export-variables-prefix`
 
-Prefix to prepend to each environment variable when `export-variables` is set to true.
+Prefix to prepend to each environment variable name when `export-variables` is set to true.
 
 ### `keys-case`
 
