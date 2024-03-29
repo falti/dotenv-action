@@ -55,7 +55,7 @@ jobs:
           export-variables: true
           export-variables-prefix: "TFVARS_"
       - run: |
-          if [ "$TEST_fixtures_1" != "123" ]; then
+          if [ "$TFVARS_fixtures_1" != "123" ]; then
             echo "Variables not exported"
             exit 1
           fi
