@@ -24,6 +24,10 @@ Mask values after reading from the `.env` file.
 
 Export values as environment variables in addition to storing them in the output after reading from the `.env` file.
 
+### `export-variables-prefix`
+
+Prefix to prepend to each environment variable name when `export-variables` is set to true.
+
 ### `keys-case`
 
 Transform keys cases to `lower`, `upper` or keep as it is with `bypass`.

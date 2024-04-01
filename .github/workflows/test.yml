@@ -44,6 +44,22 @@ jobs:
             exit 1
           fi
 
+  # test environment variables are prefixed
+  test-export-prefix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          path: ./fixtures/.env
+          export-variables: true
+          export-variables-prefix: "TFVARS_"
+      - run: |
+          if [ "$TFVARS_fixtures_1" != "123" ]; then
+            echo "Variables not exported"
+            exit 1
+          fi
+
   test-keys-lowercase:
     runs-on: ubuntu-latest
     steps:
