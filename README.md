@@ -20,6 +20,10 @@ Log variables after reading from the `.env` file.
 
 Mask values after reading from the `.env` file.
 
+### `ensure-exists`
+
+Fail the action when `.env` file is not found at `path`. Default is `true`.
+
 ### `export-variables`
 
 Export values as environment variables in addition to storing them in the output after reading from the `.env` file.

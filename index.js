@@ -1,40 +1,44 @@
 const core = require("@actions/core");
 const dotenvAction = require("./dotenv_action");
-try {
-  const dotenvFile = core.getInput("path");
-  const logVariables = core.getInput("log-variables").toLowerCase() === "true";
-  const maskVariables =
-    core.getInput("mask-variables").toLowerCase() === "true";
-  const exportVariables =
-    core.getInput("export-variables").toLowerCase() === "true";
-  const exportVariablesPrefix = core.getInput("export-variables-prefix");
-  const keysCase = core
-    .getInput("keys-case", { required: false })
-    .toLowerCase();
-  const variables = dotenvAction(dotenvFile, keysCase, logVariables);
 
-  if (maskVariables) {
+try {
+  const ensureExists = core.getInput("ensure-exists").toLowerCase();
+  const keysCase = core.getInput("keys-case").toLowerCase();
+  const logVariables = core.getInput("log-variables").toLowerCase();
+  const maskVariables = core.getInput("mask-variables").toLowerCase();
+  const exportVariables = core.getInput("export-variables").toLowerCase();
+
+  const exportVariablesPrefix = core.getInput("export-variables-prefix");
+  const path = core.getInput("path");
+
+  const variables = dotenvAction({
+    path: path || ".env",
+    ensureExists: (ensureExists || "true") === "true",
+    keysCase: keysCase || "lower",
+  });
+
+  if (maskVariables === "true") {
     for (const key in variables) {
       const value = variables[key];
+
       core.setSecret(value);
     }
   }
 
-  if (logVariables) {
-    console.log(variables);
-  } else {
-    console.log(
-      `loaded ${Object.keys(variables).length} values into the environment`,
-    );
-  }
+  core.info(
+    logVariables === "true"
+      ? JSON.stringify(variables, null, 2)
+      : `Loaded ${Object.keys(variables).length} values into the environment.`,
+  );
 
   core.setOutput("generic", "please check for actual outputs");
 
   for (const key in variables) {
     const value = variables[key];
+
     core.setOutput(key, value);
 
-    if (exportVariables) {
+    if (exportVariables === "true") {
       core.exportVariable(exportVariablesPrefix + key, value);
     }
   }
