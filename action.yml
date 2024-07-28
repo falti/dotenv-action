@@ -28,6 +28,10 @@ inputs:
     description: "Transform keys case to lower, upper or keep as it is with bypass"
     required: false
     default: "lower"
+  ensure-exists:
+    description: "Fail the action when .env file is not found at path."
+    required: false
+    default: "true"
 outputs:
   generic: # output will be available to future steps
     description: "This command will have generic output variables based on .env"
