@@ -126,6 +126,12 @@ jobs:
           path: ./fixtures/.node_options.env
           log-variables: true
           export-variables: true
+      
+      - name: Set up GitHub CLI authentication
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Capture and check logs
         run: |
