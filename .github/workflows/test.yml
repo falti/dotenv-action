@@ -115,3 +115,18 @@ jobs:
           echo "lower: $fixtures_6"
           echo "upper: $FIXTURES_6"
           echo "bypass: $Fixtures_6"
+
+  test-remove-node-options:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          path: ./fixtures/.node_options.env
+          log-variables: true
+          export-variables: true          
+      - run: |
+          if [ -n "$NODE_OPTIONS" ]; then
+            echo "NODE_OPTIONS is set but should be removed"
+            exit 1
+          fi          
