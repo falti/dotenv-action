@@ -120,17 +120,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - id: node-options-test
       - uses: ./
         with:
           path: ./fixtures/.node_options.env
           log-variables: true
           export-variables: true
       - run: |
-          env > env_output.txt
-          cat env_output.txt
-          if grep -q "Can't store NODE_OPTIONS output parameter using '\$GITHUB_ENV' command." env_output.txt; then
-            echo "Warning: NODE_OPTIONS was removed by GitHub Actions."
+          # Capture the logs of the entire job up to this point
+          run_id=$(echo $GITHUB_RUN_ID)
+          job_id=$(echo $GITHUB_JOB)
+          logs=$(gh run view $run_id --log | grep -A 20 -B 20 "Can't store NODE_OPTIONS output parameter using '\$GITHUB_ENV' command.")
+
+          if [ -n "$logs" ]; then
+            echo "Warning detected: $logs"
             exit 1
           else
-            echo "NODE_OPTIONS removed from environment."            
+            echo "No warning detected related to NODE_OPTIONS"            
           fi
+        shell: bash
