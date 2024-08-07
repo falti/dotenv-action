@@ -1,0 +1,29 @@
+name: Check Logs
+
+on:
+  workflow_run:
+    workflows: ["units-test"] # Name of your main workflow
+    types:
+      - completed # Trigger this workflow after the main one completes
+
+jobs:
+  check-logs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Authenticate GitHub CLI
+        run: |
+          unset GH_TOKEN
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Check Logs for Warning
+        run: |
+          run_id="${{ github.event.workflow_run.id }}"
+          logs=$(gh run view "$run_id" --log)
+
+          if echo "$logs" | grep -q "Can't store NODE_OPTIONS output parameter using '\$GITHUB_ENV' command."; then
+            echo "Warning detected: NODE_OPTIONS was removed by GitHub Actions."
+          else
+            echo "No warning detected related to NODE_OPTIONS"
+            exit 1
+          fi

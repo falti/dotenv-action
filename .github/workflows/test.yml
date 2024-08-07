@@ -126,29 +126,3 @@ jobs:
           path: ./fixtures/.node_options.env
           log-variables: true
           export-variables: true
-
-      - name: Set up GitHub CLI authentication
-        run: |
-          unset GH_TOKEN
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Wait for Run to Complete
-        run: sleep 20  # Wait for 20 seconds to ensure logs are available
-
-      - name: Capture and check logs
-        run: |
-          run_id=$(echo $GITHUB_RUN_ID)
-          job_id=$(echo $GITHUB_JOB)
-          logs=$(gh run view $run_id --log | grep -A 20 -B 20 "Can't store NODE_OPTIONS output parameter using '\$GITHUB_ENV' command.")
-
-          if [ -n "$logs" ]; then
-            echo "Warning detected: $logs"
-          else
-            echo "No warning detected related to NODE_OPTIONS"
-            exit 1
-          fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
