@@ -126,6 +126,7 @@ jobs:
           log-variables: true
           export-variables: true
       - run: |
+          env 
           if [ -n "$NODE_OPTIONS" ]; then
             echo "NODE_OPTIONS is set but should be removed"
             exit 1
