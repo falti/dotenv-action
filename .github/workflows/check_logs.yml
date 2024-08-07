@@ -5,7 +5,7 @@ on:
     workflows: ["units-test"] # Name of your main workflow
     types:
       - completed # Trigger this workflow after the main one completes
-  workflow_dispatch:  # Add this for manual triggering
+  workflow_dispatch: # Add this for manual triggering
 
 jobs:
   check-logs:
