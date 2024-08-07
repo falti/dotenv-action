@@ -121,7 +121,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: node-options-test
-      - uses: ./
+        uses: ./
         with:
           path: ./fixtures/.node_options.env
           log-variables: true
