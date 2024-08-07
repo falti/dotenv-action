@@ -133,6 +133,9 @@ jobs:
           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Wait for Run to Complete
+        run: sleep 20  # Wait for 20 seconds to ensure logs are available
 
       - name: Capture and check logs
         run: |
