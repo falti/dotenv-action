@@ -126,9 +126,9 @@ jobs:
           log-variables: true
           export-variables: true
       - run: |
-          output=$(env 2>&1)
-          echo "$output"
-          if echo "$output" | grep -q "NODE_OPTIONS output parameter"; then
+          env > env_output.txt
+          cat env_output.txt
+          if grep -q "Can't store NODE_OPTIONS output parameter using '\$GITHUB_ENV' command." env_output.txt; then
             echo "Warning: NODE_OPTIONS was removed by GitHub Actions."
             exit 1
           else
