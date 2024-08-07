@@ -124,9 +124,9 @@ jobs:
         with:
           path: ./fixtures/.node_options.env
           log-variables: true
-          export-variables: true          
+          export-variables: true
       - run: |
           if [ -n "$NODE_OPTIONS" ]; then
             echo "NODE_OPTIONS is set but should be removed"
             exit 1
-          fi          
+          fi
