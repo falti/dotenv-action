@@ -128,7 +128,7 @@ jobs:
       - run: |
           output=$(env 2>&1)
           echo "$output"
-          if echo "$output" | grep -q "Can't store NODE_OPTIONS output parameter using '\$GITHUB_ENV' command."; then
+          if echo "$output" | grep -q "NODE_OPTIONS output parameter"; then
             echo "Warning: NODE_OPTIONS was removed by GitHub Actions."
             exit 1
           else
