@@ -1,4 +1,4 @@
-name: Check Logs
+name: check-logs
 
 on:
   workflow_run:
