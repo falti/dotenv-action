@@ -1,4 +1,4 @@
-name: "units-test"
+name: Run tests
 on:
   pull_request:
   push:
@@ -115,3 +115,14 @@ jobs:
           echo "lower: $fixtures_6"
           echo "upper: $FIXTURES_6"
           echo "bypass: $Fixtures_6"
+
+  test-remove-node-options:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - id: run-custom-action
+        uses: ./
+        with:
+          path: ./fixtures/.node_options.env
+          log-variables: true
+          export-variables: true
