@@ -1,0 +1,14 @@
+name: simple
+
+on:
+  workflow_run:
+    workflows: [Run tests] # Name of your main workflow
+    types:
+      - completed # Trigger this workflow after the main one completes
+  workflow_dispatch: # Add this for manual triggering
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This is a test workflow"
